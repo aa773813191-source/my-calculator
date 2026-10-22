@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>حاسبتي</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #e8f5e9;
+  text-align: center;
+  padding: 25px 12px;
+}
+.card {
+  background: white;
+  max-width: 400px;
+  margin: 30px auto;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px #0002;
+}
+input, select, button {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 13px;
+  margin: 8px 0;
+  font-size: 17px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+button {
+  background: #218838;
+  color: white;
+  border: none;
+}
+#result {
+  color: #218838;
+  font-size: 22px;
+  margin-top: 18px;
+  overflow-wrap: anywhere;
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>🧮 حاسبتي</h1>
+  <p>حساباتك بسهولة وفي مكان واحد</p>
+
+  <input type="number" id="a" placeholder="الرقم الأول">
+  <input type="number" id="b" placeholder="الرقم الثاني">
+
+  <select id="op">
+    <option value="+">جمع (+)</option>
+    <option value="-">طرح (−)</option>
+    <option value="*">ضرب (×)</option>
+    <option value="/">قسمة (÷)</option>
+  </select>
+
+  <button onclick="calculate()">احسبي النتيجة</button>
+  <div id="result"></div>
+</div>
+
+<script>
+function calculate() {
+  const first = document.getElementById("a").value;
+  const second = document.getElementById("b").value;
+  const resultBox = document.getElementById("result");
+
+  if (first === "" || second === "") {
+    resultBox.textContent = "أدخلي الرقمين أولًا";
+    return;
+  }
+
+  const a = Number(first);
+  const b = Number(second);
+  const op = document.getElementById("op").value;
+  let result;
+
+  if (op === "+") result = a + b;
+  else if (op === "-") result = a - b;
+  else if (op === "*") result = a * b;
+  else if (op === "/") {
+    if (b === 0) {
+      resultBox.textContent = "لا يمكن القسمة على صفر";
+      return;
+    }
+    result = a / b;
+  }
+
+  resultBox.textContent = "النتيجة: " + result;
+}
+</script>
+</body>
+  </html>
+  
